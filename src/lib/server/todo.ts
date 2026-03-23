@@ -16,7 +16,7 @@ export async function createTodo(
         createdAt: new Date,
         updatedAt: new Date,
         dueDate: todoData.dueDate,
-        priority: todoData.priority || 'medium'
+        priority: todoData.priority || 'mediam'
     };
 
     const result = await db.collection('todos').insertOne(todo)

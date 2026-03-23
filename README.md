@@ -282,3 +282,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 6.) routes/login/
 - +page.server.ts
 - +page.svelte
+
+## Image Preview:
+![alt](./src/lib/assets/1-login.jpg)
+![alt](./src/lib/assets/2-list.jpg)
+![alt](./src/lib/assets/2-model.jpg)
+![alt](./src/lib/assets/4-delete.jpg)
+![alt](./src/lib/assets/5-add.jpg)
+![alt](./src/lib/assets/6-update.jpg)

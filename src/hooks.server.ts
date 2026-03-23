@@ -1,4 +1,4 @@
-import { connectToDatabase } from '$lib/server/db';
+import { connectToDatabase } from '$lib/server/db/client';
 import { verifyToken } from '$lib/server/auth';
 import { redirect, type Handle } from '@sveltejs/kit';
 

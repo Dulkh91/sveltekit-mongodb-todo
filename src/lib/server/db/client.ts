@@ -14,4 +14,13 @@ export async function connectToDatabase() {
     }
 }
 
+// បន្ថែម function getDb នេះ!
+// export async function getDb() {
+//     if (!dbInstance) {
+//         // បើមិនទាន់មាន connection សូមភ្ជាប់
+//         await connectToDatabase()
+//     }
+//     return dbInstance
+// }
+
 export const db = client.db(DB_NAME)

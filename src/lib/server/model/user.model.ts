@@ -10,8 +10,8 @@ export interface User {
 }
 
 export interface JWTPayload {
+  userId: string;
   email: string;
-  password: string;
   name: string;
 }
 

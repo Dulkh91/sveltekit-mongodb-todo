@@ -1,26 +1,25 @@
-import { MongoClient } from "mongodb";
+import { MongoClient,Db } from "mongodb";
 import {MONGODB_URL, DB_NAME} from '$env/static/private'
 
-const client = new MongoClient(MONGODB_URL)
+let client: MongoClient
+let db: Db
+
+// const client = new MongoClient(MONGODB_URL)
 
 export async function connectToDatabase() {
-    try {
+    if(!client){
+        const client = new MongoClient(MONGODB_URL)
         await client.connect()
-        // console.log("Success Connected!")
-        return client.db(DB_NAME)
-    } catch (error) {
-        console.error("Mongodb connection error: ", error)
-        throw error
+        // console.log('✅ Connected to MongoDB Atlas');
+        db = client.db(DB_NAME)
     }
+
+    return db
 }
 
-// បន្ថែម function getDb នេះ!
-// export async function getDb() {
-//     if (!dbInstance) {
-//         // បើមិនទាន់មាន connection សូមភ្ជាប់
-//         await connectToDatabase()
-//     }
-//     return dbInstance
-// }
-
-export const db = client.db(DB_NAME)
+export function getDB(){
+    if(!db){
+        throw new Error('Database not connected. Call connectToDatabase first.');
+    }
+    return db
+}

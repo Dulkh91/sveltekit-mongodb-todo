@@ -290,3 +290,78 @@ export const handle: Handle = async ({ event, resolve }) => {
 ![alt](./src/lib/assets/4-delete.jpg)
 ![alt](./src/lib/assets/5-add.jpg)
 ![alt](./src/lib/assets/6-update.jpg)
+
+# Config With netify
+### ជំហានទី 1: តម្លើង Netlify Adapter
+
+```bash
+npm install -D @sveltejs/adapter-netlify
+```
+### ជំហានទី 2: កែប្រែ SvelteKit Config
+កែប្រែ svelte.config.js៖
+```ts
+import adapter from '@sveltejs/adapter-netlify';
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+    preprocess: vitePreprocess(),
+    kit: {
+        adapter: adapter({
+            // បើចង់ប្រើ Edge Functions (សម្រាប់ប្រតិកម្មលឿន)
+            edge: false,
+            
+            // បើចង់ប្រើ Serverless Functions
+            split: false,
+            
+            // ទំហំ function (ស្រេចចិត្ត)
+            // functionMemorySize: 1024,
+        })
+    }
+};
+
+export default config;
+```
+## ជំហានទី 3: រៀបចំ Netlify Configuration
+បង្កើតឯកសារ netlify.toml នៅ root នៃគម្រោង៖ 
+```toml
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# កំណត់ Functions directory
+[functions]
+  node_bundler = "esbuild"
+
+# កំណត់ Redirects (សម្រាប់ SPA mode)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  ```
+
+## ជំហានទី 4: កែប្រែ package.json scripts
+ពិនិត្យមើល package.json ថាមាន scripts ទាំងនេះ៖
+```json
+{
+  "scripts": {
+    "dev": "vite dev",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+  }
+}
+```
+ជំហានទី 5: សាកល្បង Build មូលដ្ឋាន
+```bash
+# សាកល្បង build មើល
+npm run build
+
+# បើ build ជោគជ័យ នឹងឃើញ folder build/
+ls build
+```
+### 5 push to github

@@ -6,7 +6,7 @@ const client = new MongoClient(MONGODB_URL)
 export async function connectToDatabase() {
     try {
         await client.connect()
-        console.log("Success Connected!")
+        // console.log("Success Connected!")
         return client.db(DB_NAME)
     } catch (error) {
         console.error("Mongodb connection error: ", error)

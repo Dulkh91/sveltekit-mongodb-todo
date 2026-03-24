@@ -1,0 +1,16 @@
+[build]
+  command = "npm run build"
+  publish = "build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# កំណត់ Functions directory
+[functions]
+  node_bundler = "esbuild"
+
+# កំណត់ Redirects (សម្រាប់ SPA mode)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

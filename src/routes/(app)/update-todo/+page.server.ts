@@ -80,7 +80,7 @@ export const actions: Actions ={
                 priority: priority || 'mediam'
             })
 
-            console.log("DB", db)
+            // console.log("DB", db)
              if (!updateData) {
                 return fail(404, { 
                     error: 'មិនឃើញមានកិច្ចការនេះទេ ឬអ្នកគ្មានសិទ្ធិកែប្រែ'

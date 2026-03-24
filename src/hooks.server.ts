@@ -28,7 +28,7 @@ export const handle: Handle = async ({ event, resolve }) => {
   }
 
   // បើអ្នកប្រើបាន Login រួចហើយ មិនអាចចូលទំព័រ Login/Register ទៀតទេ
-  if ((event.url.pathname === '/login' || event.url.pathname === '/register') && event.locals.user) {
+  if ((event.url.pathname ==='/' || event.url.pathname === '/login' || event.url.pathname === '/register') && event.locals.user) {
     throw redirect(303, '/todo');
   }
 
